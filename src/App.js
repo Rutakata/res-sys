@@ -1,25 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from "./Components/Header/Header";
+import Menu from "./Components/Menu/Menu";
+import OrdersList from "./Components/Orders/OrdersList";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {Provider} from "react-redux";
+import store from "./Redux/store";
+import MenuContainer from "./Components/Menu/MenuContainer";
+import OrdersListContainer from "./Components/Orders/OrdersListContainer";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+let App = () => {
+    return (
+        <div className="App">
+            <Header/>
+            <Routes>
+                <Route path="/" element={<OrdersList/>} />
+                <Route path="/menu" element={<MenuContainer/>}/>
+                <Route path="/ordersList" element={<OrdersListContainer/>}/>
+            </Routes>
+        </div>
+    );
 }
 
-export default App;
+let AppContainer = () => {
+    return (
+        <BrowserRouter>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </BrowserRouter>
+    )
+}
+
+export default AppContainer;

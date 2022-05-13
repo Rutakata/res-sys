@@ -1,0 +1,21 @@
+.ordersList {
+    padding: 0 100px;
+}
+.ordersList h1 {
+    text-align: center;
+}
+.ordersList li {
+    display: inline-block;
+}
+.orderCategory {
+    width: 200px;
+    height: 50px;
+    border: 1px solid black;
+    border-radius: 20px;
+    text-align: center;
+    line-height: 50px;
+}
+.orderCategory:hover {
+    background-color: black;
+    color: white;
+}

@@ -1,0 +1,23 @@
+.header {
+    height: 100px;
+    background-color: #1577bc;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 6fr;
+    padding: 0 100px;
+}
+.headerLink {
+    text-align: center;
+    font-size: 30px;
+    line-height: 100px;
+    text-decoration: none;
+    color: #fff;
+}
+.headerLink:hover {
+    font-weight: 600;
+}
+.login {
+    text-align: right;
+    font-size: 30px;
+    line-height: 100px;
+    color: #fff;
+}
