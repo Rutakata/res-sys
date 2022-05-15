@@ -87,6 +87,17 @@ export const getDrinksDishes = () => async (dispatch) => {
     console.log(response)
 }
 
+export const getAllDishes = () => async (dispatch) => {
+    dispatch(toggleFetching(true))
+    let response = await MenuApi.getSoupDishes()
+    dispatch(setSoupDishes(response.data))
+    console.log(response)
+    response = await MenuApi.getDrinksDishes()
+    dispatch(setDrinks(response.data))
+    dispatch(toggleFetching(false))
+    console.log(response)
+}
+
 export const createOrder = (order) => async (dispatch) => {
     let response = await MenuApi.sendOrder(order)
     dispatch(sendOrderAC())

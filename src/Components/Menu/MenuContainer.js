@@ -1,15 +1,14 @@
 import React, {useEffect} from "react";
 import Menu from "./Menu";
 import {connect} from "react-redux";
-import {getSoupDishes, getDrinksDishes, addDishToOrder, createOrder, clearOrder, toggleFetching, setDishNumber} from "../../Redux/menuReducer";
+import {getAllDishes, addDishToOrder, createOrder, clearOrder, toggleFetching, setDishNumber} from "../../Redux/menuReducer";
 import {getSoups, getDrinks, getCurrentOrder, getFetchingState} from "../../Redux/menuSelectors";
 
 
 const MenuContainer = (props) => {
     useEffect(() => {
         if (props.soups.length === 0) {
-            props.getSoupDishes()
-            props.getDrinksDishes()
+            props.getAllDishes()
         }
     })
 
@@ -25,5 +24,5 @@ let mapStateToProps = (state) => ({
     isFetching: getFetchingState(state)
 })
 
-export default connect(mapStateToProps, {getSoupDishes, getDrinksDishes, addDishToOrder, createOrder, clearOrder, toggleFetching, setDishNumber})(MenuContainer)
+export default connect(mapStateToProps, {addDishToOrder, createOrder, clearOrder, toggleFetching, setDishNumber, getAllDishes})(MenuContainer)
 

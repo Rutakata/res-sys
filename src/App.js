@@ -14,7 +14,7 @@ let App = () => {
         <div className="App">
             <Header/>
             <Routes>
-                <Route path="/" element={<OrdersList/>} />
+                <Route path="/" element={<MenuContainer/>} />
                 <Route path="/menu" element={<MenuContainer/>}/>
                 <Route path="/ordersList" element={<OrdersListContainer/>}/>
             </Routes>
