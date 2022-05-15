@@ -12,7 +12,9 @@ const NewOrder = (props) => {
                                                                 setDishNumber={props.setDishNumber}/>))}
             </div>
             <div className={style.orderActions}>
-                <div className={style.sendOrderButton} onClick={() => {props.createOrder(props.currentOrder)}}>Надіслати</div>
+                <div className={style.sendOrderButton} onClick={() => {props.createOrder({"orderContent": props.currentOrder,
+                                                                                            "orderDate": new Date(),
+                                                                                            "isOrderReady": false})}}>Надіслати</div>
                 <div className={style.clearOrder} onClick={() => {props.clearOrder()}}><img src={trashCan} className={style.trashCan} alt="Очистити"/></div>
             </div>
 

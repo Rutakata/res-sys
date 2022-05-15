@@ -16,8 +16,8 @@ export const MenuApi = {
     getDrinksDishes() {
         return instance.get(`/drinkDishes`)
     },
-    sendOrder() {
-        return instance.post(`/orders`)
+    sendOrder(newOrder) {
+        return instance.post(`/orders`, newOrder)
     }
 }
 

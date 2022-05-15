@@ -6,8 +6,9 @@ import {getOrdersList, changeOrderState} from "../../Redux/ordersReducer";
 
 const OrdersListContainer = (props) => {
     useEffect(() => {
-        props.getOrdersList()
-    },[])
+        const requesting = setInterval(() => {props.getOrdersList()}, 1000)
+        return () => clearInterval(requesting)
+    })
 
     return <OrdersList readyOrders={props.readyOrders} ordersInProgress={props.ordersInProgress}
                        setOrderReady={props.changeOrderState}/>

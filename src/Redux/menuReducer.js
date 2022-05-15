@@ -22,7 +22,8 @@ let menuReducer = (state = initialState, action) => {
         case GET_DRINKS:
             return {...state, drinks: action.drinks}
         case ADD_DISH_TO_ORDER:
-            return {...state, currentOrder: [...state.currentOrder, {...action.dish, number: 1}]}
+            let isPresent = state.currentOrder.some((order) => order.dishName === action.dish.dishName)
+            return isPresent === false ?  {...state, currentOrder: [...state.currentOrder, {...action.dish, number: 1}]}: state
         case SEND_ORDER:
             return {...state, currentOrder: []}
         case CLEAR_ORDER:
@@ -34,7 +35,6 @@ let menuReducer = (state = initialState, action) => {
                 }
             })
 
-            return {...state, currentOrder: [...newCurrentOrder]}
             return {...state, currentOrder: [...newCurrentOrder]}
         case TOGGLE_FETCHING:
             return {...state, isFetching: action.isFetching}
