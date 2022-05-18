@@ -24,5 +24,8 @@ export const MenuApi = {
 export const OrdersApi = {
     getOrders() {
         return instance.get(`/orders`)
+    },
+    setOrderReady(id) {
+        return instance.put(`/orders`, id)
     }
 }

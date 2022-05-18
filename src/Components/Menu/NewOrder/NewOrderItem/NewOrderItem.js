@@ -1,20 +1,21 @@
 import React, {useState} from "react";
 import style from "./NewOrderItem.module.css"
-import {setDishNumber} from "../../Redux/menuReducer";
+import {setDishNumber} from "../../../../Redux/menuReducer";
 
 const NewOrderItem = (props) => {
     let [number, setNumber] = useState(props.dish.number)
 
     let handleChange = (event) => {
         setNumber(event.target.value)
-        setDishNumber(props.dish.id, number)
+        setDishNumber(props.dish._id, number)
         console.log(number)
     }
 
     return (
         <div className={style.orderItemWrapper}>
             <h3 className={style.dishName}>{props.dish.dishName}</h3>
-            <input type="number" value={number} onChange={handleChange} className={style.dishNumber}/> шт.
+            <input type="number" value={number} min="1" onChange={handleChange} className={style.dishNumber}/>
+            <button onClick={() => {props.deleteOrderItem(props.dish._id)}} className={style.deleteItemButton}>X</button>
         </div>
     )
 }

@@ -39,11 +39,12 @@ export const getOrdersList = () => async (dispatch) => {
     dispatch(setOrders(response.data))
     console.log(response)
 }
-export const changeOrderState = (id) => async (dispatch) => {
-    let response = await OrdersApi.setOrderReady(id)
-    console.log(response)
-    // let response2 = await OrdersApi.getOrders()
-    // dispatch(setOrders(response2.data))
+export const setOrderReady = (id) => async (dispatch) => {
+    console.log(id)
+    let response1 = await OrdersApi.setOrderReady(id)
+    let response2 = await OrdersApi.getOrders()
+    dispatch(setOrders(response2.data))
+    console.log(id)
 }
 
 

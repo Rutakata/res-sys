@@ -1,37 +1,42 @@
 div.order {
-    border: 1px solid black;
+    box-shadow: 0 0 10px gray;
     border-radius: 20px;
-    padding-left: 20px;
-    padding-top: 10px;
-    margin-bottom: 20px;
+    padding: 20px 20px;
+    margin: 20px 10px;
+    max-width: 400px;
+    min-width: 300px;
+    max-height: 600px;
+    min-height: 300px;
     display: grid;
-    grid-template-columns: 4fr 1fr 1fr;
+    grid-template-rows: 4fr 1fr;
 }
 div.order div.orderContent div{
-    background-color: azure;
+    background-color: rgb(206, 206, 206);
     border-radius: 10px;
     height: 30px;
-    padding-left: 10px;
+    padding: 10px;
     margin-bottom: 10px;
 }
 div.order div.orderContent div h3 {
     display: inline-block;
     margin: 0 20px 0 0;
+    font-size: 20px;
 }
-div.order div.orderInfo {
-    text-align: center;
-    font-size: 72px;
+.buttonWrapper {
+    padding-top: 10px;
 }
 .setReadyButton {
     display: block;
     border: 2px solid #1577bc;
     border-radius: 15px;
     background-color: #1577bc;
-    width: 100px;
+    width: 200px;
     height: 50px;
+    line-height: 50px;
     text-align: center;
     font-size: 20px;
     color: #fff;
+    margin: 0 auto;
 }
 .setReadyButton:hover {
     background-color: #fff;

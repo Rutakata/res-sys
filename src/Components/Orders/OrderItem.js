@@ -9,9 +9,8 @@ const OrderItem = (props) => {
             <label>{el.dishPrice} - {el.number}</label>
         </div>))}
         </div>
-        <div className={style.orderInfo}>{props.order.id}</div>
         {props.order.isOrderReady ? null
-            : <div><a onClick={()=> {props.setOrderReady(props.order.id)}} className={style.setReadyButton}>Готово</a></div>}
+            : <div className={style.buttonWrapper}><a onClick={()=> {props.setOrderReady({"id": props.order._id})}} className={style.setReadyButton}>Готово</a></div>}
 
     </div>
 }

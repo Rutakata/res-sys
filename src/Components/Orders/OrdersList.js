@@ -4,18 +4,20 @@ import OrderItem from "./OrderItem";
 
 
 const OrdersList = (props) => {
-    let [category, setCategory] = useState(props.ordersInProgress)
+    let [category, setCategory] = useState('ordersInProgress')
 
     return (
         <div className={style.ordersList}>
-            <h1>Orders List</h1>
-            <ul>
-                <li><div onClick={() => {setCategory(props.readyOrders)}} className={style.orderCategory}>Ready</div></li>
-                <li><div onClick={() => {setCategory(props.ordersInProgress)}} className={style.orderCategory}>In progress</div></li>
-            </ul>
-            <div>
-                {category.length !== 0 ? category.map(order => (<OrderItem order={order} setOrderReady={props.setOrderReady}/>))
-                    : "No item"}
+            <div className={style.ordersNavigation}>
+                <div onClick={() => {setCategory('readyOrders')}} activeClassName={style.activeCategory} className={style.ordersNavigationItem}>Готові</div>
+                <div onClick={() => {setCategory('ordersInProgress')}} activeClassName={style.activeCategory} className={style.ordersNavigationItem}>В процесі</div>
+            </div>
+            {props.ordersInProgress.length === 0 ? <div>Loading...</div>: null}
+            <div className={style.orders}>
+                {category === "ordersInProgress" ? props.ordersInProgress.map(order => (<OrderItem order={order} setOrderReady={props.setOrderReady}/>)):
+                                                    props.readyOrders.map(order => (<OrderItem order={order} setOrderReady={props.setOrderReady}/>))}
+                {/*{category.length !== 0 ? category.map(order => (<OrderItem order={order} setOrderReady={props.setOrderReady}/>))*/}
+                {/*    : "No item"}*/}
             </div>
         </div>
     )

@@ -7,6 +7,7 @@ const SEND_ORDER = "SEND_ORDER"
 const TOGGLE_FETCHING = "TOGGLE_FETCHING"
 const CLEAR_ORDER = "CLEAR_ORDER"
 const SET_DISH_NUMBER = "SET_DISH_NUMBER"
+const DELETE_ODRER_ITEM = "DELETE_ODRER_ITEM"
 
 let initialState = {
     soups: [],
@@ -29,15 +30,19 @@ let menuReducer = (state = initialState, action) => {
         case CLEAR_ORDER:
             return {...state, currentOrder: []}
         case SET_DISH_NUMBER:
-            let newCurrentOrder = state.currentOrder.map((order) => {
-                if (order.id === action.id) {
-                    order.number = action.number
+            let newCurrentOrder = state.currentOrder.map((item) => {
+                if (item._id == action.id) {
+                    return {...item, number: action.number}
+                }else {
+                    return item
                 }
             })
-
             return {...state, currentOrder: [...newCurrentOrder]}
         case TOGGLE_FETCHING:
             return {...state, isFetching: action.isFetching}
+        case DELETE_ODRER_ITEM:
+            let updatedOrder = state.currentOrder.filter(item => item._id !== action.id)
+            return {...state, currentOrder: [...updatedOrder]}
         default:
             return state
     }
@@ -64,6 +69,7 @@ export const clearOrder = () => {
 }
 
 export const setDishNumber = (id, number) => {
+    console.log(id, number)
     return { type: SET_DISH_NUMBER, id, number}
 }
 
@@ -71,21 +77,25 @@ export const toggleFetching = (isFetching) => {
     return { type: TOGGLE_FETCHING, isFetching }
 }
 
-export const getSoupDishes = () => async (dispatch) => {
-    dispatch(toggleFetching(true))
-    let response = await MenuApi.getSoupDishes()
-    dispatch(setSoupDishes(response.data))
-    dispatch(toggleFetching(false))
-    console.log(response)
+export const deleteOrderItem = (id) => {
+    return { type: DELETE_ODRER_ITEM, id}
 }
 
-export const getDrinksDishes = () => async (dispatch) => {
-    dispatch(toggleFetching(true))
-    let response = await MenuApi.getDrinksDishes()
-    dispatch(setDrinks(response.data))
-    dispatch(toggleFetching(false))
-    console.log(response)
-}
+// export const getSoupDishes = () => async (dispatch) => {
+//     dispatch(toggleFetching(true))
+//     let response = await MenuApi.getSoupDishes()
+//     dispatch(setSoupDishes(response.data))
+//     dispatch(toggleFetching(false))
+//     console.log(response)
+// }
+//
+// export const getDrinksDishes = () => async (dispatch) => {
+//     dispatch(toggleFetching(true))
+//     let response = await MenuApi.getDrinksDishes()
+//     dispatch(setDrinks(response.data))
+//     dispatch(toggleFetching(false))
+//     console.log(response)
+// }
 
 export const getAllDishes = () => async (dispatch) => {
     dispatch(toggleFetching(true))

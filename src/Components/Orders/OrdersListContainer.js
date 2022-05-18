@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import OrdersList from "./OrdersList";
 import {getOrdersInProgress, getReadyOrders} from "../../Redux/ordersSelectors";
 import {connect} from "react-redux";
-import {getOrdersList, changeOrderState} from "../../Redux/ordersReducer";
+import {getOrdersList, setOrderReady} from "../../Redux/ordersReducer";
 
 const OrdersListContainer = (props) => {
     useEffect(() => {
@@ -11,7 +11,7 @@ const OrdersListContainer = (props) => {
     })
 
     return <OrdersList readyOrders={props.readyOrders} ordersInProgress={props.ordersInProgress}
-                       setOrderReady={props.changeOrderState}/>
+                       setOrderReady={props.setOrderReady}/>
 }
 
 let mapStateToProps = (state) => ({
@@ -19,4 +19,4 @@ let mapStateToProps = (state) => ({
     ordersInProgress: getOrdersInProgress(state)
 })
 
-export default connect(mapStateToProps, {getOrdersList, changeOrderState})(OrdersListContainer)
+export default connect(mapStateToProps, {getOrdersList, setOrderReady})(OrdersListContainer)

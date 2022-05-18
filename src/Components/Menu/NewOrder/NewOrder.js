@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./NewOrder.module.css"
-import trashCan from "../../Assets/Images/trashcan.png"
-import NewOrderItem from "./NewOrderItem";
+import trashCan from "../../../Assets/Images/trashcan.png"
+import NewOrderItem from "./NewOrderItem/NewOrderItem";
 
 const NewOrder = (props) => {
     return (
@@ -9,7 +9,7 @@ const NewOrder = (props) => {
             <h3>New Order</h3>
             <div>
                 {props.currentOrder.map(dish => (<NewOrderItem key={dish.id} dish={dish} currentOrder={props.currentOrder}
-                                                                setDishNumber={props.setDishNumber}/>))}
+                                                                setDishNumber={props.setDishNumber} deleteOrderItem={props.deleteOrderItem}/>))}
             </div>
             <div className={style.orderActions}>
                 <div className={style.sendOrderButton} onClick={() => {props.createOrder({"orderContent": props.currentOrder,

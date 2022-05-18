@@ -1,6 +1,6 @@
 import React from "react";
 import style from "./MenuItem.module.css";
-import borsch from "../../Assets/Images/borsch.jpg";
+import borsch from "../../../Assets/Images/borsch.jpg";
 
 
 const MenuItem = (props) => {
