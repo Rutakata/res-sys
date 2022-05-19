@@ -10,3 +10,6 @@ export const getCurrentOrder = (state) => {
 export const getFetchingState = (state) => {
     return state.menuPage.isFetching
 }
+export const getCurrentOrderPrice = (state) => {
+    return state.menuPage.currentOrderPrice
+}

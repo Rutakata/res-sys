@@ -45,7 +45,7 @@
 .menuList {
     display: grid;
     grid-template-columns: 400px 400px 400px;
-    grid-template-rows: 150px 150px 150px;
+    grid-template-rows: 150px;
     grid-column-gap: 30px;
     grid-row-gap: 30px;
 }

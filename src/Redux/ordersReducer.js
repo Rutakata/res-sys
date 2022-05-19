@@ -46,6 +46,9 @@ export const setOrderReady = (id) => async (dispatch) => {
     dispatch(setOrders(response2.data))
     console.log(id)
 }
+export const sendOrderToPayment = () => async (dispatch) => {
+
+}
 
 
 export default ordersReducer

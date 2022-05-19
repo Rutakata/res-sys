@@ -2,11 +2,11 @@ import React from "react";
 import style from "./OrderItem.module.css"
 
 
-const OrderItem = (props) => {
+const OrderItemInProcess = (props) => {
     return <div className={style.order}>
         <div className={style.orderContent}>{props.order.orderContent.map(el => (<div>
             <h3>{el.dishName}</h3>
-            <label>{el.dishPrice} - {el.number}</label>
+            <label>{el.number} шт.</label>
         </div>))}
         </div>
         {props.order.isOrderReady ? null
@@ -15,4 +15,4 @@ const OrderItem = (props) => {
     </div>
 }
 
-export default OrderItem
+export default OrderItemInProcess

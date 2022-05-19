@@ -1,26 +1,27 @@
 import './App.css';
-import Header from "./Components/Header/Header";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Provider} from "react-redux";
 import store from "./Redux/store";
 import MenuContainer from "./Components/Menu/MenuContainer";
 import OrdersListContainer from "./Components/Orders/OrdersListContainer";
-import Login from "./Components/Authorization/Login"
+import LoginContainer from "./Components/Authorization/LoginContainer";
+import HeaderContainer from "./Components/Header/HeaderContainer";
 
 
 let App = () => {
     return (
         <div>
-            <Header/>
+            <HeaderContainer />
             <Routes>
-                <Route path="/" element={<MenuContainer/>} />
-                <Route path="/menu" element={<MenuContainer/>}/>
+                <Route path="/" element={<LoginContainer/>} />
+                <Route path="/menu" element={<MenuContainer/>}/>: null
                 <Route path="/ordersList" element={<OrdersListContainer/>}/>
-                <Route path="/login" element={<Login/>}/>
+                <Route path="/login" element={<LoginContainer/>}/>
             </Routes>
         </div>
     );
 }
+
 
 let AppContainer = () => {
     return (
@@ -31,5 +32,7 @@ let AppContainer = () => {
         </BrowserRouter>
     )
 }
+
+
 
 export default AppContainer;

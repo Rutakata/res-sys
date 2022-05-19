@@ -3,7 +3,7 @@
     border-radius: 20px;
     padding: 10px 20px 20px 20px;
     display: grid;
-    grid-template-rows: 1fr 4fr 1fr;
+    grid-template-rows: 1fr 5fr 1fr 1fr;
     height: 700px;
     width: 80%;
     justify-self: right;
@@ -55,4 +55,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+}
+.orderPrice {
+    font-size: 24px;
 }

@@ -29,3 +29,9 @@ export const OrdersApi = {
         return instance.put(`/orders`, id)
     }
 }
+
+export const AuthApi = {
+    logIn(username, password) {
+        return instance.post('/login', {"username": username, "password": password})
+    }
+}

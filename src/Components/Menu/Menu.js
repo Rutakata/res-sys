@@ -22,7 +22,8 @@ const Menu = (props) => {
                                         props.drinks.map(dish => (<MenuItem dish={dish} key={dish.id} addDishToOrder={props.addDishToOrder}/>))}
             </div>
             <NewOrder currentOrder={props.currentOrder} createOrder={props.createOrder} clearOrder={props.clearOrder}
-                                    setDishNumber={props.setDishNumber} deleteOrderItem={props.deleteOrderItem}/>
+                                    setDishNumber={props.setDishNumber} deleteOrderItem={props.deleteOrderItem}
+                                    currentOrderPrice={props.currentOrderPrice}/>
         </div>
         <AddDishPopup />
 

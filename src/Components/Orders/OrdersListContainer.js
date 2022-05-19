@@ -3,6 +3,7 @@ import OrdersList from "./OrdersList";
 import {getOrdersInProgress, getReadyOrders} from "../../Redux/ordersSelectors";
 import {connect} from "react-redux";
 import {getOrdersList, setOrderReady} from "../../Redux/ordersReducer";
+import {getUsername} from "../../Redux/authSelectors";
 
 const OrdersListContainer = (props) => {
     useEffect(() => {
@@ -10,13 +11,17 @@ const OrdersListContainer = (props) => {
         return () => clearInterval(requesting)
     })
 
+    let currentCategory
+    props.username === "waiter" ? currentCategory = "readyOrders": currentCategory = "ordersInProgress"
+
     return <OrdersList readyOrders={props.readyOrders} ordersInProgress={props.ordersInProgress}
-                       setOrderReady={props.setOrderReady}/>
+                       setOrderReady={props.setOrderReady} username={props.username} currentCategory={currentCategory}/>
 }
 
 let mapStateToProps = (state) => ({
     readyOrders: getReadyOrders(state),
-    ordersInProgress: getOrdersInProgress(state)
+    ordersInProgress: getOrdersInProgress(state),
+    username: getUsername(state)
 })
 
 export default connect(mapStateToProps, {getOrdersList, setOrderReady})(OrdersListContainer)
