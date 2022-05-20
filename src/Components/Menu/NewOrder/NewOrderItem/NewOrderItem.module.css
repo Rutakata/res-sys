@@ -2,13 +2,13 @@
     margin-bottom: 10px;
     display: grid;
     grid-template-columns: 4fr 1fr 1fr;
-    align-content: flex-start;
 }
 h3.dishName {
-    font-size: 20px;
+    font-size: 20px !important;
     font-weight: 400;
     margin-right: 20px;
     text-align: left;
+    border-bottom: 2px solid gray;
 }
 .dishNumber {
     display: inline-block;

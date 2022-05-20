@@ -8,6 +8,7 @@ const TOGGLE_FETCHING = "TOGGLE_FETCHING"
 const CLEAR_ORDER = "CLEAR_ORDER"
 const SET_DISH_NUMBER = "SET_DISH_NUMBER"
 const DELETE_ORDER_ITEM = "DELETE_ORDER_ITEM"
+const SET_TABLE = "SET_TABLE"
 
 let initialState = {
     soups: [],
@@ -89,7 +90,6 @@ export const toggleFetching = (isFetching) => {
 export const deleteOrderItem = (id) => {
     return { type: DELETE_ORDER_ITEM, id}
 }
-
 // export const getSoupDishes = () => async (dispatch) => {
 //     dispatch(toggleFetching(true))
 //     let response = await MenuApi.getSoupDishes()

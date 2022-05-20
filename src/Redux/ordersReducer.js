@@ -40,14 +40,18 @@ export const getOrdersList = () => async (dispatch) => {
     console.log(response)
 }
 export const setOrderReady = (id) => async (dispatch) => {
-    console.log(id)
-    let response1 = await OrdersApi.setOrderReady(id)
-    let response2 = await OrdersApi.getOrders()
-    dispatch(setOrders(response2.data))
-    console.log(id)
+    await OrdersApi.setOrderReady(id)
+    let response = await OrdersApi.getOrders()
+    dispatch(setOrders(response.data))
 }
-export const sendOrderToPayment = () => async (dispatch) => {
-
+export const sendOrderToPayment = (order, id) => async (dispatch) => {
+    let response = await OrdersApi.setOrderDelivered(order)
+    console.log(response)
+    console.log(id)
+    response = await OrdersApi.deleteDeliveredOrder(id)
+    console.log(response)
+    response = await OrdersApi.getOrders()
+    dispatch(setOrders(response.data))
 }
 
 

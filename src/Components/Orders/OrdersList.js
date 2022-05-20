@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import style from "./OrdersList.module.css"
 import OrderItemInProcess from "./OrdersItem/OrderItemInProcess";
+import OrderItemReady from "./OrdersItem/OrderItemReady";
 
 
 const OrdersList = (props) => {
@@ -24,7 +25,7 @@ const OrdersList = (props) => {
 
             <div className={style.orders}>
                 {category === "ordersInProgress" ? props.ordersInProgress.map(order => (<OrderItemInProcess order={order} setOrderReady={props.setOrderReady}/>)):
-                                                    props.readyOrders.map(order => (<OrderItemInProcess order={order} setOrderReady={props.setOrderReady}/>))}
+                                                    props.readyOrders.map(order => (<OrderItemReady order={order} sendOrderToPayment={props.sendOrderToPayment}/>))}
             </div>
         </div>
     )

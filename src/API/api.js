@@ -26,7 +26,13 @@ export const OrdersApi = {
         return instance.get(`/orders`)
     },
     setOrderReady(id) {
-        return instance.put(`/orders`, id)
+        return instance.put(`/orders/${id}`)
+    },
+    setOrderDelivered(order) {
+        return instance.post(`/payment`, order)
+    },
+    deleteDeliveredOrder(id) {
+        return instance.delete(`/orders/${id}`)
     }
 }
 
