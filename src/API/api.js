@@ -38,6 +38,7 @@ export const OrdersApi = {
 
 export const AuthApi = {
     logIn(username, password) {
+        console.log(username, password)
         return instance.post('/login', {"username": username, "password": password})
     }
 }
