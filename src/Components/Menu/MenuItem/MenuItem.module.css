@@ -1,8 +1,8 @@
 .menuItem {
     box-shadow: 0 0 15px #7c7c7c;
     border-radius: 20px;
-    max-height: 130px;
-    padding: 10px;
+    height: 130px;
+    padding: 10px 15px;
     display: flex;
 }
 .image {
