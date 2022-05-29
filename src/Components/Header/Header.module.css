@@ -1,0 +1,25 @@
+.headerWrapper {
+    height: 100px;
+    background-color: #1577bc;
+    padding: 0 100px;
+}
+.headerMenu {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 5fr;
+}
+.headerLink {
+    text-align: center;
+    font-size: 30px;
+    line-height: 100px;
+    text-decoration: none;
+    display: grid;
+    color: #fff;
+}
+.headerLink:hover {
+    font-weight: 600;
+}
+.login {
+    font-size: 30px;
+    line-height: 100px;
+    color: #fff;
+}
