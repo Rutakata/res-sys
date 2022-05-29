@@ -1,0 +1,29 @@
+.orderItemWrapper {
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
+}
+h3.dishName {
+    font-size: 20px !important;
+    font-weight: 400;
+    margin-right: 20px;
+    text-align: left;
+    border-bottom: 2px solid gray;
+}
+.dishNumber {
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+}
+.deleteItemButton {
+    background-color: #2791dc;
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+    color: #fff;
+}
+.deleteItemButton:hover {
+    border: 2px solid #2791dc;
+    background-color: inherit;
+    color: #2791dc;
+}

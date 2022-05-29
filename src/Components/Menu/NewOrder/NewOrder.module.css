@@ -1,0 +1,64 @@
+.newOrder {
+    box-shadow: 0 0 15px #7c7c7c;
+    border-radius: 20px;
+    padding: 10px 20px 20px 20px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 5fr 1fr 1fr;
+    height: 700px;
+    width: 80%;
+    justify-self: right;
+}
+.newOrder h3 {
+    text-align: center;
+    margin: 0;
+    font-size: 30px;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+}
+.orderActions {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-column-gap: 20px;
+    justify-content: space-around;
+}
+.sendOrderButton {
+    height: 50px;
+    background-color: #1577bc;
+    border-radius: 20px;
+    font-size: 30px;
+    color: #fff;
+    font-weight: 600;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+}
+.sendOrderButton:hover {
+    background-color: #fff;
+    border: 2px solid #1577bc;
+    color: #1577bc;
+}
+.clearOrder {
+    height: 50px;
+    background-color: #7c7c7c;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    position: relative;
+}
+.clearOrder:hover {
+    background-color: #d03737;
+}
+.trashCan {
+    height: 35px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.orderPrice {
+    font-size: 24px;
+}
+.tableNumber {
+    font-size: 24px;
+}
