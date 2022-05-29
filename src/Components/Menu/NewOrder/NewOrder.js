@@ -12,7 +12,7 @@ const NewOrder = (props) => {
 
     return (
         <div className={style.newOrder}>
-            <h3>New Order</h3>
+            <h3>Нове замовлення</h3>
             <div className={style.tableNumber}>
                 Номер столу: <input type="number" min="1" max="10" value={table} onChange={handleChange}/>
             </div>

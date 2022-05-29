@@ -18,6 +18,24 @@
     background-color: #2791dc;
     width: 150px;
     height: 50px;
+    cursor: pointer;
+}
+.menuNavigationItem:hover {
+    background-color: #fff;
+    color: #2791dc;
+    border: 2px solid #2791dc;
+}
+.activeMenuItem {
+    font-size: 28px;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+    border: 2px solid #2791dc;
+    border-radius: 20px;
+    background-color: #2791dc;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
 }
 .showPopup {
     font-size: 28px;
@@ -32,11 +50,6 @@
 }
 .showPopup:target {
     display: block;
-}
-.menuNavigationItem:hover {
-    background-color: #fff;
-    color: #2791dc;
-    border: 2px solid #2791dc;
 }
 .menuSections {
     display: grid;

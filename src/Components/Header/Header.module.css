@@ -1,6 +1,6 @@
 .headerWrapper {
     height: 100px;
-    background-color: #1577bc;
+    background: linear-gradient(to right, #1577bc, #2791dc);
     padding: 0 100px;
 }
 .headerMenu {
@@ -10,13 +10,23 @@
 .headerLink {
     text-align: center;
     font-size: 30px;
+    font-family: "Rubik Medium", sans-serif;
     line-height: 100px;
     text-decoration: none;
     display: grid;
     color: #fff;
 }
 .headerLink:hover {
-    font-weight: 600;
+    color: #bdbdbd;
+}
+.headerActive {
+    text-align: center;
+    font-size: 30px;
+    font-family: "Rubik Medium", sans-serif;
+    line-height: 100px;
+    text-decoration: none;
+    display: grid;
+    color: #bdbdbd;
 }
 .login {
     font-size: 30px;

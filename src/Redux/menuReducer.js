@@ -123,4 +123,9 @@ export const createOrder = (order) => async (dispatch) => {
     console.log(response)
 }
 
+// export const createNewDish = (newDish) => async (dispatch) => {
+//     console.log(newDish)
+//     await MenuApi.sendNewDish(newDish)
+// }
+
 export default menuReducer

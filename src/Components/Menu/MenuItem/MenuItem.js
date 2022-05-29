@@ -10,7 +10,7 @@ const MenuItem = (props) => {
             <div className={style.info}>
                 <h3>{props.dish.dishName}</h3>
                 <span>Price: {props.dish.dishPrice}</span>
-                <div className={style.addToOrderButton} onClick={() => {props.addDishToOrder(props.dish)}}>Add to Order</div>
+                <div className={style.addToOrderButton} onClick={() => {props.addDishToOrder(props.dish)}}>Додати</div>
             </div>
         </div>
     )

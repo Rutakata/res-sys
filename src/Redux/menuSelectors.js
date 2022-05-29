@@ -13,3 +13,6 @@ export const getFetchingState = (state) => {
 export const getCurrentOrderPrice = (state) => {
     return state.menuPage.currentOrderPrice
 }
+export const getCurrentUser =  (state) => {
+    return state.authPage.username
+}

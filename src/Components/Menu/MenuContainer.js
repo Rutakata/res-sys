@@ -8,14 +8,15 @@ import {
     clearOrder,
     toggleFetching,
     setDishNumber,
-    deleteOrderItem
+    deleteOrderItem,
+    createNewDish
 } from "../../Redux/menuReducer";
 import {
     getSoups,
     getDrinks,
     getCurrentOrder,
     getFetchingState,
-    getCurrentOrderPrice
+    getCurrentOrderPrice, getCurrentUser
 } from "../../Redux/menuSelectors";
 
 
@@ -29,7 +30,7 @@ const MenuContainer = (props) => {
     return <Menu soups={props.soups} drinks={props.drinks} addDishToOrder={props.addDishToOrder}
                  currentOrder={props.currentOrder} createOrder={props.createOrder} isFetching={props.isFetching}
                  clearOrder={props.clearOrder} setDishNumber={props.setDishNumber} deleteOrderItem={props.deleteOrderItem}
-                 currentOrderPrice={props.currentOrderPrice} />
+                 currentOrderPrice={props.currentOrderPrice} username={props.username}/>
 }
 
 let mapStateToProps = (state) => ({
@@ -37,7 +38,8 @@ let mapStateToProps = (state) => ({
     drinks: getDrinks(state),
     currentOrder: getCurrentOrder(state),
     currentOrderPrice: getCurrentOrderPrice(state),
-    isFetching: getFetchingState(state)
+    isFetching: getFetchingState(state),
+    username: getCurrentUser(state)
 })
 
 export default connect(mapStateToProps, {
