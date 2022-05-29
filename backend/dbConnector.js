@@ -2,64 +2,71 @@ const mongodb = require('mongodb');
 const {ObjectID} = require("mongodb");
 
 
-const client = new mongodb.MongoClient("mongodb://localhost:27017/restaurant")
-
-export const getData = async (collectionName) => {
-    let response = []
-
-    let getData = (item) => { response.push(item) }
+async function main(callback, props) {
+    const client = new mongodb.MongoClient("mongodb://localhost:27017/restaurant")
+    let result
 
     try {
         await client.connect()
-        const data = client.db().collection(collectionName).find()
-        await data.forEach(item => getData(item))
+        result = await callback(client, props)
     }catch (e) {
         console.log(e)
     }finally {
         await client.close()
     }
 
-    return response
+    return result
 }
 
-export const postData = async (collectionName,data) => {
-    try {
-        await client.connect()
-        await client.db().collection(collectionName).insertOne(data)
-    }catch (e) {
-        console.log(e)
-    }finally {
-        await client.close()
-    }
+async function getData(client, {collectionName}) {
+    let result = []
 
-    return "Data was inserted"
+    const data = await client.db().collection(collectionName).find()
+    await data.forEach(item => result.push(item))
+
+    return result
 }
 
-export const setReady = async(collectionName, id) => {
-    let objectId = new ObjectID(id)
+async function postData(client, {collectionName, data}) {
+    await client.db().collection(collectionName).insertOne(data)
 
-    try {
-        await client.connect()
-        await client.db().collection(collectionName).updateOne( {"_id": objectId}, {"$set": {"isOrderReady": true}})
-    }catch(e) {
-        console.log(e)
-    }finally {
-        await client.close()
-    }
-
-    return "Dish is set ready"
+    return {statusCode: 200, message: "Data was inserted"}
 }
 
-export const logIn = async(collectionName, username, password) => {
-    try {
-        await client.connect()
-        let userObject = await client.db().collection(collectionName).findOne({"username":username, "password": password})
+async function deleteData(client, {collectionName, id}) {
+    let result = await client.db().collection(collectionName).deleteOne({"_id": new ObjectID(id)})
 
-        if (!userObject) {
-            return "Error. User is not found"
-        }
-        return userObject
-    }catch (e) {
-        console.log(e)
+    if (result.deletedCount) {
+        return {statusCode: 200, message: "Document was deleted"}
     }
+    return {statusCode: 404, message: "Document was not found"}
+}
+
+async function setReady(client, {collectionName, id}) {
+    const result = await client.db().collection(collectionName).updateOne(
+        {"_id": new mongodb.ObjectID(id)}, {"$set": {"isOrderReady": true}}
+    )
+
+    if (result.matchedCount) {
+        return {statusCode: 200, message: "Document was updated"}
+    }
+    return {statusCode: 404, message: "Document was not found"}
+}
+
+async function logIn(client, {collectionName, username, password}) {
+    const userObject = await client.db().collection(collectionName).findOne({"username":username, "password": password})
+
+    if (!userObject) {
+        return {statusCode: 404, message: "User is not found"}
+    }
+    return {statusCode: 200, userObject}
+}
+
+module.exports = {
+    main: main,
+    getData: getData,
+    postData: postData,
+    deleteData: deleteData,
+    setReady: setReady,
+    logIn: logIn
 }

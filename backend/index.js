@@ -2,8 +2,8 @@ const express = require('express');
 const mongodb = require('mongodb');
 const cors = require("cors")
 const {ObjectID} = require("mongodb");
-const bcrypt = require("bcryptjs")
-const {response} = require("express");
+//const bcrypt = require("bcryptjs")
+
 
 
 const app = express()
@@ -23,12 +23,10 @@ const PORT = 5000
 const getData = async (collectionName) => {
     let response = []
 
-    let getData = (item) => { response.push(item) }
-
     try {
         await client.connect()
-        const data = client.db().collection(collectionName).find()
-        await data.forEach(item => getData(item))
+        const data = await client.db().collection(collectionName).find()
+        await data.forEach(item => response.push(item))
     }catch (e) {
         console.log(e)
     }finally {
@@ -41,7 +39,8 @@ const getData = async (collectionName) => {
 const postData = async (collectionName,data) => {
     try {
         await client.connect()
-        await client.db().collection(collectionName).insertOne(data)
+        let response = await client.db().collection(collectionName).insertOne(data)
+        console.log(response)
     }catch (e) {
         console.log(e)
     }finally {
@@ -116,7 +115,6 @@ app.get('/orders', (req, res) => {
 })
 app.post('/orders', (req, res) => {
     let data = req.body
-    console.log(data)
     postData("orders", data).then(response => res.send(response))
 })
 app.put('/orders/:id', (req, res) => {
