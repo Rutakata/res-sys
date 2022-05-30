@@ -22,15 +22,14 @@ import {
 
 const MenuContainer = (props) => {
     useEffect(() => {
-        if (props.soups.length === 0) {
-            props.getAllDishes()
-        }
+        const requesting = setInterval(() => { props.getAllDishes() }, 1000)
+        return () => clearInterval(requesting)
     })
 
     return <Menu soups={props.soups} drinks={props.drinks} addDishToOrder={props.addDishToOrder}
                  currentOrder={props.currentOrder} createOrder={props.createOrder} isFetching={props.isFetching}
                  clearOrder={props.clearOrder} setDishNumber={props.setDishNumber} deleteOrderItem={props.deleteOrderItem}
-                 currentOrderPrice={props.currentOrderPrice} username={props.username}/>
+                 currentOrderPrice={props.currentOrderPrice} username={props.username} createNewDish={props.createNewDish}/>
 }
 
 let mapStateToProps = (state) => ({
@@ -49,6 +48,7 @@ export default connect(mapStateToProps, {
     toggleFetching,
     setDishNumber,
     getAllDishes,
-    deleteOrderItem
+    deleteOrderItem,
+    createNewDish
 })(MenuContainer)
 

@@ -3,6 +3,7 @@ import style from "./NewOrder.module.css"
 import trashCan from "../../../Assets/Images/trashcan.png"
 import NewOrderItem from "./NewOrderItem/NewOrderItem";
 
+
 const NewOrder = (props) => {
     let [table, setTable] = useState(1)
 
@@ -29,7 +30,7 @@ const NewOrder = (props) => {
                         "orderDate": new Date(),
                         "isOrderReady": false,
                         "currentOrderPrice": props.currentOrderPrice,
-                        "orderTable": table})}}>Надіслати</div>
+                        "orderTable": typeof table !== "number" ? 1: table})}}>Надіслати</div>
                 <div className={style.clearOrder} onClick={() => {
                     setTable(1)
                     props.clearOrder()}}>

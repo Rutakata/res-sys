@@ -107,13 +107,11 @@ export const deleteOrderItem = (id) => {
 // }
 
 export const getAllDishes = () => async (dispatch) => {
-    dispatch(toggleFetching(true))
     let response = await MenuApi.getSoupDishes()
     dispatch(setSoupDishes(response.data))
     console.log(response)
     response = await MenuApi.getDrinksDishes()
     dispatch(setDrinks(response.data))
-    dispatch(toggleFetching(false))
     console.log(response)
 }
 
@@ -123,9 +121,13 @@ export const createOrder = (order) => async (dispatch) => {
     console.log(response)
 }
 
-// export const createNewDish = (newDish) => async (dispatch) => {
-//     console.log(newDish)
-//     await MenuApi.sendNewDish(newDish)
-// }
+export const createNewDish = (newDish) => async (dispatch) => {
+    console.log(newDish)
+
+    if (newDish.dishName.length !== 0) {
+        let response = await MenuApi.sendNewDish(newDish)
+        console.log(response)
+    }
+}
 
 export default menuReducer

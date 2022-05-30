@@ -5,29 +5,65 @@ const AddDishPopup = ({active, setActive, createNewDish}) => {
     let [dishParameters, setDishParameters] = useState({
         dishName: "",
         dishCategory: "soupDishes",
-        dishPrice: 0
+        dishPrice: 1
     })
 
+    let [error, setError] = useState("")
+
     let handleNameChange = (event) => {
-        setDishParameters({...dishParameters, dishName: event.target.value})
+        if (event.target.value.length === 0) {
+            setError("Назва страви не може бути пустою")
+            setDishParameters({...dishParameters, dishName: event.target.value})
+        }else {
+            setError("")
+            setDishParameters({...dishParameters, dishName: event.target.value})
+        }
+
     }
     let handlePriceChange = (event) => {
         setDishParameters({...dishParameters, dishPrice: Number(event.target.value)})
     }
+    let handleCategoryChange = (event) => {
+        setDishParameters({...dishParameters, dishCategory: event.target.value})
+    }
+    let checkForm = (dishParameters) => {
+        if (dishParameters.dishName.length === 0) {
+            setError("Назва страви не може бути пустою")
+        }else {
+            setError("")
+            createNewDish(dishParameters)
+            clearForm()
+        }
+    }
+    let clearForm = () => {
+        setError("")
+        setDishParameters({dishName: "", dishCategory: "soupDishes", dishPrice: 1})
+    }
 
     return <div className={active ? style.popupWrapper + " " + style.active: style.popupWrapper} onClick={() => setActive(false)}>
         <div className={style.popupBody} onClick={e => e.stopPropagation()}>
-            <h2 className={style.popupHeader}>Додати страву</h2>
+            <h2 className={style.popupBody__header}>Додати страву</h2>
             <div className={style.dishOptions}>
-                <span>Назва</span> <input type="text" value={dishParameters.dishName} onChange={handleNameChange}/><br/>
-                <span>Категорія</span> <select>
-                    <option>Суп</option>
-                    <option>Напій</option>
-                </select><br/>
-                <span>Ціна</span> <input type="number" min="0" value={dishParameters.dishPrice} onChange={handlePriceChange}/>
+                <span className={style.dishOptions__fieldName}>Назва</span>
+                <input type="text" value={dishParameters.dishName} onChange={handleNameChange} className={style.dishOptions__input}/>
+
+                <span className={style.dishOptions__fieldName}>Категорія</span>
+                <select defaultValue={dishParameters.dishCategory} onChange={handleCategoryChange} className={style.dishOptions__select}>
+                    <option value="soupDishes">Суп</option>
+                    <option value="drinkDishes"> Напій</option>
+                </select>
+
+                <span className={style.dishOptions__fieldName}>Ціна</span>
+                <input type="number" min="1" max="1000" value={dishParameters.dishPrice} onChange={handlePriceChange} className={style.dishOptions__input}/>
             </div>
-            <button onClick={() => createNewDish(dishParameters)}>Створити страву</button>
-            <button onClick={() => setDishParameters({dishName: "", dishCategory: "soupDishes", dishPrice: 0})}>Видалити</button>
+
+            <div className={style.popupBody__error}>{error}</div>
+
+            <div className={style.buttonsWrapper}>
+                <button onClick={() => checkForm(dishParameters)} className={style.buttonsWrapper__createButton}>Створити страву</button>
+                <button onClick={() => clearForm()} className={style.buttonsWrapper__clearButton}>Очистити</button>
+            </div>
+
         </div>
     </div>
 }

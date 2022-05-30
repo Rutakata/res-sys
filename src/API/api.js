@@ -18,7 +18,11 @@ export const MenuApi = {
     },
     sendOrder(newOrder) {
         return instance.post(`/orders`, newOrder)
+    },
+    sendNewDish(newDish) {
+        return instance.post(`/menu`, newDish)
     }
+
 }
 
 export const OrdersApi = {
