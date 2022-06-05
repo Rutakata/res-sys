@@ -1,20 +1,32 @@
 .newOrder {
+    box-sizing: border-box;
+    height: 700px;
+    width: 100%;
     box-shadow: 0 0 15px #7c7c7c;
     border-radius: 20px;
-    padding: 10px 20px 20px 20px;
+    padding: 40px 15px 10px;
     display: grid;
     grid-template-rows: 1fr 1fr 5fr 1fr 1fr;
-    height: 700px;
-    width: 80%;
-    justify-self: right;
+    grid-template-columns: 1fr;
 }
-.newOrder h3 {
-    text-align: center;
+.newOrder__header {
     margin: 0;
     font-size: 30px;
-    display: flex;
-    align-self: center;
-    justify-self: center;
+    text-align: center;
+}
+.newOrder__tableNumber {
+    font-size: 24px;
+}
+.newOrder__tableNumber input {
+    height: 25px;
+}
+.newOrder__content {
+    display: grid;
+    grid-auto-rows: 30px;
+    grid-row-gap: 20px;
+}
+.newOrder__price {
+    font-size: 24px;
 }
 .orderActions {
     display: grid;
@@ -22,7 +34,7 @@
     grid-column-gap: 20px;
     justify-content: space-around;
 }
-.sendOrderButton {
+.orderActions__sendOrderButton {
     height: 50px;
     background-color: #1577bc;
     border-radius: 20px;
@@ -33,12 +45,12 @@
     align-self: center;
     justify-content: center;
 }
-.sendOrderButton:hover {
+.orderActions__sendOrderButton:hover {
     background-color: #fff;
     border: 2px solid #1577bc;
     color: #1577bc;
 }
-.clearOrder {
+.orderActions__clearOrder {
     height: 50px;
     background-color: #7c7c7c;
     border-radius: 15px;
@@ -47,7 +59,7 @@
     align-self: center;
     position: relative;
 }
-.clearOrder:hover {
+.orderActions__clearOrder:hover {
     background-color: #d03737;
 }
 .trashCan {
@@ -55,10 +67,4 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-}
-.orderPrice {
-    font-size: 24px;
-}
-.tableNumber {
-    font-size: 24px;
 }

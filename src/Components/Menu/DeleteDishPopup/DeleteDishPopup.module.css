@@ -1,0 +1,65 @@
+.popupWrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    align-items: center;
+    justify-content: center;
+    transform: scale(0);
+}
+.popupWrapper.active {
+    transform: scale(1);
+}
+.popupBody {
+    width: 600px;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 30px 20px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}
+.popupBody__header {
+    font-size: 30px;
+    text-align: center;
+    margin: 0;
+}
+.choice {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.choice__delete {
+    width: 70px;
+    height: 36px;
+    background-color: #1577bc;
+    border: 2px solid #1577bc;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    line-height: 40px;
+}
+.choice__delete:hover {
+    border: 2px solid #1577bc;
+    color: #1577bc;
+    background-color: #fff;
+}
+.choice__leave {
+    width: 70px;
+    height: 40px;
+    background-color: #7c7c7c;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    line-height: 40px;
+}
+.choice__leave:hover {
+    background-color: #d03737;
+}

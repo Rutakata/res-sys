@@ -6,7 +6,7 @@ const NewOrderItem = (props) => {
 
     let handleChange = (event) => {
         setNumber(event.target.value)
-        props.setDishNumber(props.dish._id, event.target.value)
+        props.setDishNumber(props.dish._id, Number(event.target.value))
         console.log(number)
     }
 

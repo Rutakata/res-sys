@@ -1,35 +1,54 @@
 .menuItem {
     box-shadow: 0 0 15px #7c7c7c;
     border-radius: 20px;
-    height: 130px;
     padding: 10px 15px;
     display: flex;
+    gap: 10px;
 }
-.image {
-    width: 170px;
+.menuItem__image {
     border-radius: 20px;
 }
-.info {
-    padding-left: 10px;
+.menuItem__info {
+    width: 100%;
 }
-.info h3 {
+.menuItem__name{
     font-size: 22px;
     font-weight: 600;
     margin: 0 0 10px;
 }
-.info span {
+.menuItem__price {
     font-size: 18px;
+    font-weight: 400;
 }
-.addToOrderButton {
+.editMenuItem {
+    display: flex;
+    gap: 5px;
+}
+.menuItem__addToOrder {
     font-size: 18px;
     border: 2px solid #1577bc;
     border-radius: 10px;
     text-align: center;
     line-height: 30px;
-    width: 150px;
     height: 30px;
+    width: 100px;
+    cursor: pointer;
 }
-.addToOrderButton:hover {
+.menuItem__addToOrder:hover {
+    background-color: #1577bc;
+    color: #fff;
+}
+.menuItem__deleteDish {
+    font-size: 18px;
+    border: 2px solid #1577bc;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    border-radius: 10px;
+    line-height: 30px;
+    cursor: pointer;
+}
+.menuItem__deleteDish:hover {
     background-color: #1577bc;
     color: #fff;
 }

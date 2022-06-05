@@ -1,19 +1,16 @@
 .orderItemWrapper {
-    margin-bottom: 10px;
     display: grid;
     grid-template-columns: 4fr 1fr 1fr;
 }
 h3.dishName {
-    font-size: 20px !important;
+    font-size: 20px;
     font-weight: 400;
-    margin-right: 20px;
-    text-align: left;
-    border-bottom: 2px solid gray;
+    margin: 0;
+    text-align: center;
 }
 .dishNumber {
     display: inline-block;
-    width: 30px;
-    height: 20px;
+    width: 40px;
 }
 .deleteItemButton {
     background-color: #2791dc;

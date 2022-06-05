@@ -8,13 +8,14 @@ const TOGGLE_FETCHING = "TOGGLE_FETCHING"
 const CLEAR_ORDER = "CLEAR_ORDER"
 const SET_DISH_NUMBER = "SET_DISH_NUMBER"
 const DELETE_ORDER_ITEM = "DELETE_ORDER_ITEM"
-const SET_TABLE = "SET_TABLE"
+const DELETE_DISH_FROM_MENU = "DELETE_DISH_FROM_MENU"
 
 let initialState = {
     soups: [],
     drinks: [],
     currentOrder: [],
     currentOrderPrice: 0,
+    dishToDelete: null,
     isFetching: false
 }
 
@@ -33,26 +34,22 @@ let menuReducer = (state = initialState, action) => {
         case CLEAR_ORDER:
             return {...state, currentOrder: [], currentOrderPrice: 0}
         case SET_DISH_NUMBER:
-            let newPrice = 0
+            let newPrice = state.currentOrderPrice
             let newCurrentOrder = state.currentOrder.map((item) => {
                 if (item._id === action.id) {
-                    if (item.number < action.number) {
-                        newPrice += ((action.number-item.number) * item.dishPrice)
-                    }else if (item.number > action.number) {
-                        newPrice -= ((item.number - action.number) * item.dishPrice)
-                    }
+                    newPrice = (newPrice - (item.number*item.dishPrice) + (action.number*item.dishPrice))
                     return {...item, number: action.number}
                 }else {
                     return item
                 }
             })
-            return {...state, currentOrder: [...newCurrentOrder], currentOrderPrice: state.currentOrderPrice + newPrice}
+            return {...state, currentOrder: [...newCurrentOrder], currentOrderPrice: newPrice}
         case TOGGLE_FETCHING:
             return {...state, isFetching: action.isFetching}
         case DELETE_ORDER_ITEM:
             let updatedOrder = state.currentOrder.filter(item => item._id !== action.id)
             let price = 0
-            updatedOrder.forEach(item => price += item.dishPrice)
+            updatedOrder.forEach(item => price += (item.dishPrice * item.number))
             return {...state, currentOrder: [...updatedOrder], currentOrderPrice: price}
         default:
             return state
@@ -121,7 +118,7 @@ export const createOrder = (order) => async (dispatch) => {
     console.log(response)
 }
 
-export const createNewDish = (newDish) => async (dispatch) => {
+export const createNewDish = (newDish) => async () => {
     console.log(newDish)
 
     if (newDish.dishName.length !== 0) {
@@ -129,5 +126,18 @@ export const createNewDish = (newDish) => async (dispatch) => {
         console.log(response)
     }
 }
+
+export const deleteDish = (id, category) => async() => {
+    let response = null
+
+    if (category === "soupDishes") {
+        response = await MenuApi.deleteSoupDish(id)
+    }else {
+        response = await MenuApi.deleteDrinkDish(id)
+    }
+
+    console.log(response)
+}
+
 
 export default menuReducer

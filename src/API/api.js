@@ -21,6 +21,12 @@ export const MenuApi = {
     },
     sendNewDish(newDish) {
         return instance.post(`/menu`, newDish)
+    },
+    deleteSoupDish(id) {
+        return instance.delete(`/soupDishes/${id}`)
+    },
+    deleteDrinkDish(id) {
+        return instance.delete(`/drinkDishes/${id}`)
     }
 
 }
