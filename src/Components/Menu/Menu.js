@@ -4,6 +4,7 @@ import MenuItem from "./MenuItem/MenuItem";
 import NewOrder from "./NewOrder/NewOrder";
 import AddDishPopup from "./AddDishPopup/AddDishPopup";
 import DeleteDishPopup from "./DeleteDishPopup/DeleteDishPopup";
+import MenuNavigation from "./MenuNavigation/MenuNavigation";
 
 
 const Menu = (props) => {
@@ -18,24 +19,23 @@ const Menu = (props) => {
         <DeleteDishPopup active={activeDeleteDish} setActive={setActiveDeleteDish} dishIdToDelete={dishIdToDelete}
                          category={category} deleteDish={props.deleteDish}/>
 
-        <div className={style.navigation}>
-            <div className={style.navigation__item} onClick={() => {setCategory("soupDishes")}}>Супи</div>
-            <div className={style.navigation__item} onClick={() => {setCategory("drinkDishes")}}>Напої</div>
-            {props.username === "admin" ? <div className={style.navigation__popup} onClick={() => setActiveAddDish(true)}>Додати</div>:null}
-            {props.username === "admin" ? <div className={style.navigation__item} onClick={() => setEditMode(!editMode)}>Видалити</div>:null}
-        </div>
+        <MenuNavigation setCategory={setCategory} setActiveAddDish={setActiveAddDish} setEditMode={setEditMode}
+                        username={props.username} editMode={editMode}/>
 
-        {props.soups.length === 0 && props.drinks.length === 0 ? <div>Loading...</div>: null}
+        {props.soups.length === 0 && props.drinks.length === 0 ? <div>Loading...</div> : null}
         <div className={style.menuBody}>
             <div className={style.categoryContent}>
-                {category === "soupDishes" ? props.soups.map(dish => (<MenuItem dish={dish} key={dish.id} addDishToOrder={props.addDishToOrder}
-                                                                        editMode={editMode} setActive={setActiveDeleteDish} setDishId={setDishIdToDelete}/>)):
-                                        props.drinks.map(dish => (<MenuItem dish={dish} key={dish.id} addDishToOrder={props.addDishToOrder}
-                                                                        editMode={editMode} setActive={setActiveDeleteDish} setDishId={setDishIdToDelete}/>))}
+                {category === "soupDishes" ?
+                    props.soups.map(dish => (<MenuItem dish={dish} key={dish.id} addDishToOrder={props.addDishToOrder}
+                                            editMode={editMode} setActive={setActiveDeleteDish} setDishId={setDishIdToDelete}/>))
+                    : props.drinks.map(dish => (<MenuItem dish={dish} key={dish.id} addDishToOrder={props.addDishToOrder}
+                                                editMode={editMode} setActive={setActiveDeleteDish}
+                                                setDishId={setDishIdToDelete}/>))}
             </div>
+
             <NewOrder currentOrder={props.currentOrder} createOrder={props.createOrder} clearOrder={props.clearOrder}
-                                    setDishNumber={props.setDishNumber} deleteOrderItem={props.deleteOrderItem}
-                                    currentOrderPrice={props.currentOrderPrice}/>
+                      setDishNumber={props.setDishNumber} deleteOrderItem={props.deleteOrderItem}
+                      currentOrderPrice={props.currentOrderPrice}/>
         </div>
     </div>
 
