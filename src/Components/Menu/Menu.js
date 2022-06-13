@@ -13,6 +13,7 @@ const Menu = (props) => {
     let [activeDeleteDish, setActiveDeleteDish] = useState(false)
     let [editMode, setEditMode] = useState(false)
     let [dishIdToDelete, setDishIdToDelete] = useState(null)
+    let [searchRequest, setSearchRequest] = useState(null)
 
     return <div className={style.menu}>
         <AddDishPopup active={activeAddDish} setActive={setActiveAddDish} createNewDish={props.createNewDish}/>
@@ -20,17 +21,28 @@ const Menu = (props) => {
                          category={category} deleteDish={props.deleteDish}/>
 
         <MenuNavigation setCategory={setCategory} setActiveAddDish={setActiveAddDish} setEditMode={setEditMode}
-                        username={props.username} editMode={editMode}/>
+                        username={props.username} editMode={editMode} searchRequst={searchRequest}
+                        setSearchRequest={setSearchRequest} setSearchedDishes={props.setSearchedDishes}/>
 
         {props.soups.length === 0 && props.drinks.length === 0 ? <div>Loading...</div> : null}
         <div className={style.menuBody}>
             <div className={style.categoryContent}>
                 {category === "soupDishes" ?
                     props.soups.map(dish => (<MenuItem dish={dish} key={dish.id} addDishToOrder={props.addDishToOrder}
-                                            editMode={editMode} setActive={setActiveDeleteDish} setDishId={setDishIdToDelete}/>))
-                    : props.drinks.map(dish => (<MenuItem dish={dish} key={dish.id} addDishToOrder={props.addDishToOrder}
-                                                editMode={editMode} setActive={setActiveDeleteDish}
-                                                setDishId={setDishIdToDelete}/>))}
+                                                       editMode={editMode} setActive={setActiveDeleteDish}
+                                                       setDishId={setDishIdToDelete}/>))
+                    : category === "drinkDishes" ?
+                        props.drinks.map(dish => (
+                            <MenuItem dish={dish} key={dish.id} addDishToOrder={props.addDishToOrder}
+                                      editMode={editMode} setActive={setActiveDeleteDish}
+                                      setDishId={setDishIdToDelete}/>))
+                        : props.searchedDishes.length !== 0 ?
+                            props.searchedDishes.map(dish => (
+                                <MenuItem dish={dish} key={dish.id} addDishToOrder={props.addDishToOrder}
+                                          editMode={editMode} setActive={setActiveDeleteDish}
+                                          setDishId={setDishIdToDelete}/>))
+                            : <div>No item found</div>
+                }
             </div>
 
             <NewOrder currentOrder={props.currentOrder} createOrder={props.createOrder} clearOrder={props.clearOrder}

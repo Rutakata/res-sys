@@ -13,6 +13,9 @@ export const getFetchingState = (state) => {
 export const getCurrentOrderPrice = (state) => {
     return state.menuPage.currentOrderPrice
 }
-export const getCurrentUser =  (state) => {
+export const getCurrentUser = (state) => {
     return state.authPage.username
+}
+export const getSearchedDishes = (state) => {
+    return state.menuPage.searchedDishes
 }

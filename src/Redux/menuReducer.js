@@ -8,11 +8,12 @@ const TOGGLE_FETCHING = "TOGGLE_FETCHING"
 const CLEAR_ORDER = "CLEAR_ORDER"
 const SET_DISH_NUMBER = "SET_DISH_NUMBER"
 const DELETE_ORDER_ITEM = "DELETE_ORDER_ITEM"
-const DELETE_DISH_FROM_MENU = "DELETE_DISH_FROM_MENU"
+const SET_SEARCHED_DISHES = "SET_SEARCHED_DISHES"
 
 let initialState = {
     soups: [],
     drinks: [],
+    searchedDishes: [],
     currentOrder: [],
     currentOrderPrice: 0,
     dishToDelete: null,
@@ -51,6 +52,23 @@ let menuReducer = (state = initialState, action) => {
             let price = 0
             updatedOrder.forEach(item => price += (item.dishPrice * item.number))
             return {...state, currentOrder: [...updatedOrder], currentOrderPrice: price}
+        case SET_SEARCHED_DISHES:
+            let currentSearchedDishes = []
+            if (action.searchReq === "") {
+                return {...state, searchedDishes: []}
+            }
+            state.soups.forEach(dish => {
+                if (dish.dishName.toLowerCase().includes(action.searchReq)) {
+                    currentSearchedDishes.push(dish)
+                }
+            })
+            state.drinks.forEach(dish => {
+                if (dish.dishName.toLowerCase().includes(action.searchReq)) {
+                    currentSearchedDishes.push(dish)
+                }
+            })
+
+            return {...state, searchedDishes: [...currentSearchedDishes]}
         default:
             return state
     }
@@ -104,11 +122,13 @@ export const deleteOrderItem = (id) => {
 // }
 
 export const getAllDishes = () => async (dispatch) => {
+    dispatch(toggleFetching(true))
     let response = await MenuApi.getSoupDishes()
     dispatch(setSoupDishes(response.data))
     console.log(response)
     response = await MenuApi.getDrinksDishes()
     dispatch(setDrinks(response.data))
+    dispatch(toggleFetching(false))
     console.log(response)
 }
 
@@ -139,5 +159,9 @@ export const deleteDish = (id, category) => async() => {
     console.log(response)
 }
 
+export const setSearchedDishes = (searchReq) => {
+    console.log("Reducer: ", searchReq)
+    return {type: SET_SEARCHED_DISHES, searchReq}
+}
 
 export default menuReducer

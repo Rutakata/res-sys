@@ -3,9 +3,22 @@
 }
 .navigation {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 7fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 6fr;
     justify-content: center;
+    align-items: center;
     margin-bottom: 30px;
+}
+.navigation__search {
+    width: 160px;
+    height: 40px;
+    border: 2px solid #1577bc;
+    border-radius: 10px;
+    font-size: 18px;
+    justify-self: end;
+}
+.navigation__search:hover {
+    width: 300px;
+    transition-duration: 0.5s;
 }
 .navigation__item, .navigation__popup {
     font-size: 28px;
