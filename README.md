@@ -9,5 +9,8 @@ Three roles for staff: cook, waiter, admin.
 - change state of order to "ready"
 - change state of order to "served"
 - different roles with different opportunities
+- create a new dish
+- delete a dish
+- find the dish you need
 
 ## Created on React because this type of web-system is needed to be just-in-time. And SPA is the best variant
