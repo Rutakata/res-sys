@@ -6,17 +6,20 @@ import {getOrdersList, setOrderReady, sendOrderToPayment} from "../../Redux/orde
 import {getUsername} from "../../Redux/authSelectors";
 
 const OrdersListContainer = (props) => {
+    // useEffect(() => {
+    //     const requesting = setInterval(() => {props.getOrdersList()}, 1000)
+    //     return () => clearInterval(requesting)
+    // })
     useEffect(() => {
-        const requesting = setInterval(() => {props.getOrdersList()}, 1000)
-        return () => clearInterval(requesting)
-    })
+        props.getOrdersList()
+    }, [JSON.stringify(props.readyOrders), JSON.stringify(props.ordersInProgress)])
 
     let currentCategory
     props.username === "waiter" ? currentCategory = "readyOrders": currentCategory = "ordersInProgress"
 
     return <OrdersList readyOrders={props.readyOrders} ordersInProgress={props.ordersInProgress}
                        setOrderReady={props.setOrderReady} username={props.username} currentCategory={currentCategory}
-                       sendOrderToPayment={props.sendOrderToPayment}/>
+                       sendOrderToPayment={props.sendOrderToPayment} getOrderdReady={props.getOrdersList}/>
 }
 
 let mapStateToProps = (state) => ({

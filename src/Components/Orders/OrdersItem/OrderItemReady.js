@@ -11,9 +11,10 @@ const OrderItemReady = (props) => {
         </div>
         <div className={style.tableNumber}>Стіл №{props.order.orderTable}</div>
         <div className={style.buttonWrapper}>
-            <a onClick={() => {
-                console.log(props.order._id)
-                props.sendOrderToPayment(props.order, props.order._id)}} className={style.setReadyButton}>Видано</a>
+            <a onClick={async () => {
+                await props.sendOrderToPayment(props.order, props.order._id)
+                props.getOrdersList()
+            }} className={style.setReadyButton}>Видано</a>
         </div>
 
     </div>

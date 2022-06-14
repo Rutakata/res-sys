@@ -1,5 +1,5 @@
 import React from "react";
-import style from "../Menu.module.css";
+import style from "./MenuNavigation.module.css";
 
 
 const MenuNavigation = (props) => {

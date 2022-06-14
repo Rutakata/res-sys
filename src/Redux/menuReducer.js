@@ -1,7 +1,8 @@
 import {MenuApi} from "../API/api";
 
-const GET_SOUP_DISHES = "GET_SOUP_DISHES"
-const GET_DRINKS = "GET_DRINKS"
+const SET_DISHES = "SET_DISHES"
+// const GET_SOUP_DISHES = "GET_SOUP_DISHES"
+// const GET_DRINKS = "GET_DRINKS"
 const ADD_DISH_TO_ORDER = "ADD_DISH_TO_ORDER"
 const SEND_ORDER = "SEND_ORDER"
 const TOGGLE_FETCHING = "TOGGLE_FETCHING"
@@ -22,10 +23,12 @@ let initialState = {
 
 let menuReducer = (state = initialState, action) => {
     switch (action.type) {
-        case GET_SOUP_DISHES:
-            return {...state, soups: action.soupDishes}
-        case GET_DRINKS:
-            return {...state, drinks: action.drinks}
+        case SET_DISHES:
+            return {...state, soups: action.soups, drinks: action.drinks}
+        // case GET_SOUP_DISHES:
+        //     return {...state, soups: action.soupDishes}
+        // case GET_DRINKS:
+        //     return {...state, drinks: action.drinks}
         case ADD_DISH_TO_ORDER:
             let isPresent = state.currentOrder.some((order) => order.dishName === action.dish.dishName)
             return isPresent === false ?  {...state, currentOrder: [...state.currentOrder, {...action.dish, number: 1}],
@@ -74,13 +77,17 @@ let menuReducer = (state = initialState, action) => {
     }
 }
 
-const setSoupDishes = (soupDishes) => {
-    return { type: GET_SOUP_DISHES, soupDishes }
+const setDishes = (soups, drinks) => {
+    return {type: SET_DISHES, soups, drinks}
 }
 
-const setDrinks = (drinks) => {
-    return { type: GET_DRINKS, drinks }
-}
+// const setSoupDishes = (soupDishes) => {
+//     return { type: GET_SOUP_DISHES, soupDishes }
+// }
+//
+// const setDrinks = (drinks) => {
+//     return { type: GET_DRINKS, drinks }
+// }
 
 export const sendOrderAC = () => {
     return { type: SEND_ORDER }
@@ -122,14 +129,16 @@ export const deleteOrderItem = (id) => {
 // }
 
 export const getAllDishes = () => async (dispatch) => {
-    dispatch(toggleFetching(true))
+    let soups
+    let drinks
+
     let response = await MenuApi.getSoupDishes()
-    dispatch(setSoupDishes(response.data))
-    console.log(response)
+    soups = response.data
     response = await MenuApi.getDrinksDishes()
-    dispatch(setDrinks(response.data))
-    dispatch(toggleFetching(false))
-    console.log(response)
+    drinks = response.data
+
+    dispatch(setDishes(soups, drinks))
+    console.log(soups, drinks)
 }
 
 export const createOrder = (order) => async (dispatch) => {
@@ -148,15 +157,13 @@ export const createNewDish = (newDish) => async () => {
 }
 
 export const deleteDish = (id, category) => async() => {
-    let response = null
-
     if (category === "soupDishes") {
-        response = await MenuApi.deleteSoupDish(id)
+        let response = await MenuApi.deleteSoupDish(id)
+        console.log(response)
     }else {
-        response = await MenuApi.deleteDrinkDish(id)
+        let response = await MenuApi.deleteDrinkDish(id)
+        console.log(response)
     }
-
-    console.log(response)
 }
 
 export const setSearchedDishes = (searchReq) => {

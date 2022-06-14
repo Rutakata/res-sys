@@ -10,7 +10,10 @@ const OrderItemInProcess = (props) => {
         </div>))}
         </div>
         <div className={style.buttonWrapper}>
-            <a onClick={()=> {props.setOrderReady(props.order._id)}} className={style.setReadyButton}>Готово</a>
+            <a onClick={async ()=> {
+                await props.setOrderReady(props.order._id)
+                props.getOrdersList()
+            }} className={style.setReadyButton}>Готово</a>
         </div>
 
     </div>

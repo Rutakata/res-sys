@@ -16,9 +16,10 @@ const Menu = (props) => {
     let [searchRequest, setSearchRequest] = useState(null)
 
     return <div className={style.menu}>
-        <AddDishPopup active={activeAddDish} setActive={setActiveAddDish} createNewDish={props.createNewDish}/>
+        <AddDishPopup active={activeAddDish} setActive={setActiveAddDish} createNewDish={props.createNewDish}
+                      getAllDishes={props.getAllDishes}/>
         <DeleteDishPopup active={activeDeleteDish} setActive={setActiveDeleteDish} dishIdToDelete={dishIdToDelete}
-                         category={category} deleteDish={props.deleteDish}/>
+                         category={category} deleteDish={props.deleteDish} getAllDishes={props.getAllDishes}/>
 
         <MenuNavigation setCategory={setCategory} setActiveAddDish={setActiveAddDish} setEditMode={setEditMode}
                         username={props.username} editMode={editMode} searchRequst={searchRequest}

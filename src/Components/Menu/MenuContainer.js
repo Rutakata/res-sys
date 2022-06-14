@@ -23,16 +23,21 @@ import {
 
 
 const MenuContainer = (props) => {
+    // useEffect(() => {
+    //     const requesting = setInterval(() => { props.getAllDishes() }, 1000)
+    //     return () => clearInterval(requesting)
+    // })
+
     useEffect(() => {
-        const requesting = setInterval(() => { props.getAllDishes() }, 1000)
-        return () => clearInterval(requesting)
-    })
+        props.getAllDishes()
+    }, [JSON.stringify(props.soups), JSON.stringify(props.drinks)])
 
     return <Menu soups={props.soups} drinks={props.drinks} addDishToOrder={props.addDishToOrder}
                  currentOrder={props.currentOrder} createOrder={props.createOrder} isFetching={props.isFetching}
                  clearOrder={props.clearOrder} setDishNumber={props.setDishNumber} deleteOrderItem={props.deleteOrderItem}
                  currentOrderPrice={props.currentOrderPrice} username={props.username} createNewDish={props.createNewDish}
-                 deleteDish={props.deleteDish} searchedDishes={props.searchedDishes} setSearchedDishes={props.setSearchedDishes}/>
+                 deleteDish={props.deleteDish} searchedDishes={props.searchedDishes} setSearchedDishes={props.setSearchedDishes}
+                 getAllDishes={props.getAllDishes}/>
 }
 
 let mapStateToProps = (state) => ({

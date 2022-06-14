@@ -24,8 +24,10 @@ const OrdersList = (props) => {
             {props.ordersInProgress.length === 0 && props.readyOrders.length === 0 ? <div>Loading...</div>: null}
 
             <div className={style.orders}>
-                {category === "ordersInProgress" ? props.ordersInProgress.map(order => (<OrderItemInProcess order={order} setOrderReady={props.setOrderReady}/>)):
-                                                    props.readyOrders.map(order => (<OrderItemReady order={order} sendOrderToPayment={props.sendOrderToPayment}/>))}
+                {category === "ordersInProgress" ? props.ordersInProgress.map(order => (<OrderItemInProcess order={order} setOrderReady={props.setOrderReady}
+                                                                                                            getOrdersList={props.getOrdersList}/>)):
+                                                    props.readyOrders.map(order => (<OrderItemReady order={order} sendOrderToPayment={props.sendOrderToPayment}
+                                                                                                    getOrdersList={props.getOrdersList}/>))}
             </div>
         </div>
     )

@@ -7,8 +7,9 @@ const DeleteDishPopup = (props) => {
         <div className={style.popupBody} onClick={e => e.stopPropagation()}>
             <h3 className={style.popupBody__header}>Точно видалити страву?</h3>
             <div className={style.choice}>
-                <div className={style.choice__delete} onClick={() => {
-                    props.deleteDish(props.dishIdToDelete, props.category)
+                <div className={style.choice__delete} onClick={async () => {
+                    await props.deleteDish(props.dishIdToDelete, props.category)
+                    props.getAllDishes()
                     props.setActive(false)
                 }}>Так</div>
                 <div className={style.choice__leave} onClick={() => props.setActive(false)}>Ні</div>

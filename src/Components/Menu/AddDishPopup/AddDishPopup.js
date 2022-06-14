@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import style from "./AddDishPopup.module.css"
 
-const AddDishPopup = ({active, setActive, createNewDish}) => {
+const AddDishPopup = ({active, setActive, createNewDish, getAllDishes}) => {
     let [dishParameters, setDishParameters] = useState({
         dishName: "",
         dishCategory: "soupDishes",
@@ -32,6 +32,8 @@ const AddDishPopup = ({active, setActive, createNewDish}) => {
         }else {
             setError("")
             createNewDish(dishParameters)
+            getAllDishes()
+            setActive(false)
             clearForm()
         }
     }
