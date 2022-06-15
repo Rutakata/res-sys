@@ -30,7 +30,8 @@ const MenuContainer = (props) => {
 
     useEffect(() => {
         props.getAllDishes()
-    }, [JSON.stringify(props.soups), JSON.stringify(props.drinks)])
+        // }, [JSON.stringify(props.soups), JSON.stringify(props.drinks)])
+    }, [])
 
     return <Menu soups={props.soups} drinks={props.drinks} addDishToOrder={props.addDishToOrder}
                  currentOrder={props.currentOrder} createOrder={props.createOrder} isFetching={props.isFetching}

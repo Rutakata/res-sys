@@ -47,7 +47,6 @@ export const setOrderReady = (id) => async (dispatch) => {
 export const sendOrderToPayment = (order, id) => async (dispatch) => {
     let response = await OrdersApi.setOrderDelivered(order)
     console.log(response)
-    console.log(id)
     response = await OrdersApi.deleteDeliveredOrder(id)
     console.log(response)
     response = await OrdersApi.getOrders()

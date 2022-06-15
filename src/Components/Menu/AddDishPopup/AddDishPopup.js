@@ -15,7 +15,7 @@ const AddDishPopup = ({active, setActive, createNewDish, getAllDishes}) => {
             setError("Назва страви не може бути пустою")
             setDishParameters({...dishParameters, dishName: event.target.value})
         }else {
-            setError("")
+            setError(null)
             setDishParameters({...dishParameters, dishName: event.target.value})
         }
 
@@ -26,19 +26,19 @@ const AddDishPopup = ({active, setActive, createNewDish, getAllDishes}) => {
     let handleCategoryChange = (event) => {
         setDishParameters({...dishParameters, dishCategory: event.target.value})
     }
-    let checkForm = (dishParameters) => {
+    let sendForm = async (dishParameters) => {
         if (dishParameters.dishName.length === 0) {
             setError("Назва страви не може бути пустою")
         }else {
-            setError("")
-            createNewDish(dishParameters)
+            setError(null)
+            await createNewDish(dishParameters)
             getAllDishes()
             setActive(false)
             clearForm()
         }
     }
     let clearForm = () => {
-        setError("")
+        setError(null)
         setDishParameters({dishName: "", dishCategory: "soupDishes", dishPrice: 1})
     }
 
@@ -62,7 +62,7 @@ const AddDishPopup = ({active, setActive, createNewDish, getAllDishes}) => {
             <div className={style.popupBody__error}>{error}</div>
 
             <div className={style.buttonsWrapper}>
-                <button onClick={() => checkForm(dishParameters)} className={style.buttonsWrapper__createButton}>Створити страву</button>
+                <button onClick={() => sendForm(dishParameters)} className={style.buttonsWrapper__createButton}>Створити страву</button>
                 <button onClick={() => clearForm()} className={style.buttonsWrapper__clearButton}>Очистити</button>
             </div>
 

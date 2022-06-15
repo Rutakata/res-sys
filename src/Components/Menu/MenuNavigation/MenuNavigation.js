@@ -11,12 +11,14 @@ const MenuNavigation = (props) => {
     }
 
     return <div className={style.navigation}>
-        <div className={style.navigation__item} onClick={() => {props.setCategory("soupDishes")}}>Супи</div>
-        <div className={style.navigation__item} onClick={() => {props.setCategory("drinkDishes")}}>Напої</div>
-        {props.username === "admin" ? <div className={style.navigation__popup} onClick={() => props.setActiveAddDish(true)}>Додати</div>
-            :null}
-        {props.username === "admin" ? <div className={style.navigation__item} onClick={() => props.setEditMode(!props.editMode)}>Видалити</div>
-            :null}
+        <div className={style.navigationBody}>
+            <div className={style.navigationBody__item} onClick={() => {props.setCategory("soupDishes")}}>Супи</div>
+            <div className={style.navigationBody__item} onClick={() => {props.setCategory("drinkDishes")}}>Напої</div>
+            {props.username === "admin" ? <div className={style.navigationBody__popup} onClick={() => props.setActiveAddDish(true)}>Додати</div>
+                :null}
+            {props.username === "admin" ? <div className={style.navigationBody__item} onClick={() => props.setEditMode(!props.editMode)}>Видалити</div>
+                :null}
+        </div>
         <input type="text" value={props.searchRequst} onChange={handleSearchChange}
                className={style.navigation__search} placeholder="Введіть назву..."/>
     </div>

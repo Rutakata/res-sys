@@ -11,9 +11,8 @@ const OrderItemReady = (props) => {
         </div>
         <div className={style.tableNumber}>Стіл №{props.order.orderTable}</div>
         <div className={style.buttonWrapper}>
-            <a onClick={async () => {
+            <a onClick={ async() => {
                 await props.sendOrderToPayment(props.order, props.order._id)
-                props.getOrdersList()
             }} className={style.setReadyButton}>Видано</a>
         </div>
 
