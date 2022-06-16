@@ -1,21 +1,20 @@
-div.order {
+.order {
     box-shadow: 0 0 10px gray;
     border-radius: 20px;
     padding: 20px 20px;
-    margin: 0 20px 30px;
     max-height: 600px;
     min-height: 300px;
     display: grid;
     grid-template-rows: 4fr 1fr;
 }
-div.order div.orderContent div{
+.orderContent__item{
     background-color: rgb(206, 206, 206);
     border-radius: 10px;
     height: 30px;
     padding: 10px;
     margin-bottom: 10px;
 }
-div.order div.orderContent div h3 {
+.orderContent__item h3 {
     display: inline-block;
     margin: 0 20px 0 0;
     font-size: 20px;

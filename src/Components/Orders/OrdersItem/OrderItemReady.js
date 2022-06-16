@@ -1,13 +1,14 @@
 import React from "react";
-import style from "./OrderItemReady.module.css"
+import style from "./OrderItem.module.css"
 
 
 const OrderItemReady = (props) => {
     return <div className={style.order}>
-        <div className={style.orderContent}>{props.order.orderContent.map(el => (<div>
-            <h3>{el.dishName}</h3>
-            <label>{el.number} шт.</label>
-        </div>))}
+        <div>{props.order.orderContent.map(el => (
+            <div className={style.orderContent__item}>
+                <h3>{el.dishName}</h3>
+                <label>{el.number} шт.</label>
+            </div>))}
         </div>
         <div className={style.tableNumber}>Стіл №{props.order.orderTable}</div>
         <div className={style.buttonWrapper}>

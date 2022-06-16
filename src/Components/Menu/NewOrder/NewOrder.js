@@ -9,7 +9,14 @@ const NewOrder = (props) => {
 
     let handleChange = (event) => {
         setTable(event.target.value)
-        console.log(event.target.value)
+    }
+
+    let orderForm = {
+        "orderContent": props.currentOrder,
+        "orderDate": new Date(),
+        "isOrderReady": false,
+        "currentOrderPrice": props.currentOrderPrice,
+        "orderTable": table === "" ? 1: table
     }
 
     return (
@@ -26,12 +33,8 @@ const NewOrder = (props) => {
             <div className={style.orderActions}>
                 <div className={style.orderActions__sendOrderButton} onClick={() => {
                     setTable(1)
-                    props.createOrder({
-                        "orderContent": props.currentOrder,
-                        "orderDate": new Date(),
-                        "isOrderReady": false,
-                        "currentOrderPrice": props.currentOrderPrice,
-                        "orderTable": table === "" ? 1: table})}}>Надіслати</div>
+                    props.createOrder(orderForm)
+                }}>Надіслати</div>
                 <div className={style.orderActions__clearOrder} onClick={() => {
                     setTable(1)
                     props.clearOrder()}}>

@@ -2,9 +2,10 @@ import React, {useState} from "react";
 import style from "./Menu.module.css";
 import MenuItem from "./MenuItem/MenuItem";
 import NewOrder from "./NewOrder/NewOrder";
-import AddDishPopup from "./AddDishPopup/AddDishPopup";
+import AddDishPopupOld from "./AddDishPopup/AddDishPopupOld";
 import DeleteDishPopup from "./DeleteDishPopup/DeleteDishPopup";
 import MenuNavigation from "./MenuNavigation/MenuNavigation";
+import AddDishPopup from "./AddDishPopup/AddDishPopup";
 
 
 const Menu = (props) => {

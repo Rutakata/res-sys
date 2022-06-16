@@ -2,24 +2,27 @@
     text-align: center;
     margin: 30px 100px 0;
 }
+.loginWrapper__header {
+    font-size: 30px;
+}
 .loginForm {
     width: 40%;
-    height: 400px;
+    height: 280px;
     box-shadow: 0 0 10px gray;
     border-radius: 10px;
     margin: 0 auto;
     padding: 30px 20px;
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 3fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-row-gap: 10px;
     align-items: center;
 }
-span {
+.loginForm__fieldName {
     font-size: 24px;
     font-weight: 600;
 }
-.loginField {
-    width: 300px;
+.loginForm__field {
+    width: 75%;
     height: 30px;
     background-color: inherit;
     border-radius: 7px;
@@ -27,7 +30,7 @@ span {
     font-size: 20px;
     margin: 0 auto;
 }
-.submitButton {
+.loginForm__submitButton {
     width: 200px;
     height: 40px;
     background-color: #2791dc;
@@ -37,12 +40,12 @@ span {
     font-size: 24px;
     margin: 0 auto;
 }
-.submitButton:hover {
+.loginForm__submitButton:hover {
     border: 2px solid #2791dc;
     background-color: #fff;
     color: #2791dc;
 }
-.logout {
+.loginWrapper__logoutButton {
     width: 200px;
     height: 40px;
     background-color: #2791dc;
@@ -51,12 +54,12 @@ span {
     color: white;
     font-size: 24px;
 }
-.logout:hover {
+.loginWrapper__logoutButton:hover {
     border: 2px solid #2791dc;
     background-color: #fff;
     color: #2791dc;
 }
-.errorField {
+.loginForm__error {
     color: red;
-    font-size: 24px;
+    font-size: 16px;
 }

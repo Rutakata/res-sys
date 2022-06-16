@@ -7,7 +7,6 @@ const MenuNavigation = (props) => {
         props.setSearchRequest(event.target.value)
         props.setSearchedDishes(event.target.value)
         props.setCategory("searchedDishes")
-        console.log("Navigation: ", event.target.value)
     }
 
     return <div className={style.navigation}>

@@ -17,6 +17,7 @@
     border-radius: 10px;
     font-size: 18px;
     justify-self: end;
+    transition-duration: 0.5s;
 }
 .navigation__search:hover {
     width: 400px;

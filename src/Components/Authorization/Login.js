@@ -1,30 +1,55 @@
-import React, {useState} from "react";
+import React from "react";
 import style from "./Login.module.css"
-import bcrypt from "bcryptjs"
+import {useForm} from "react-hook-form";
 
 
 const Login = (props) => {
-    let [user, setUser] = useState({"username": "", "password": ""})
+    let {
+        register,
+        formState: {errors},
+        handleSubmit,
+        reset
+    } = useForm({ mode: "onBlur" })
 
-    let handleUsername = (event) => {
-        setUser({...user, "username": event.target.value})
-        console.log(event.target.value)
-    }
-
-    let handlePassword = (event) => {
-        setUser({...user, "password": event.target.value})
-        console.log(event.target.value)
+    let onSubmit = ({username, password}) => {
+        props.sendLoginData(username, password)
+        reset()
     }
 
     return <div className={style.loginWrapper}>
-        <h2>Ви знаходитесь в профілі: {props.username}</h2>
-        {props.username !== null ? <button onClick={() => { props.clearUsername() }} className={style.logout}>Вийти</button> :
-            <div className={style.loginForm}>
-                <span>Ім'я користувача</span><input type="text" value={user.username} onChange={handleUsername} className={style.loginField}/>
-                <span>Пароль</span><input type="password" value={user.password} onChange={handlePassword} className={style.loginField}/>
-                <span className={style.errorField}>{props.errorMessage}</span>
-                <button onClick={() => {props.sendLoginData(user.username, user.password)}} className={style.submitButton}>Увійти</button>
-            </div>
+        {props.username !== null ? <h2 className={style.loginWrapper__header}>Ви знаходитесь в профілі: {props.username}</h2> : null}
+        {props.username !== null ? <button onClick={() => {props.clearUsername()}} className={style.loginWrapper__logoutButton}>Вийти</button> : null}
+        {props.username === null ?
+            <form className={style.loginForm} onSubmit={handleSubmit(onSubmit)}>
+                <span className={style.loginForm__fieldName}>Ім'я користувача</span>
+                <input {...register("username", {
+                    required: "Це поле обов'язкове",
+                    minLength: {
+                        value: 4,
+                        message: "Мінімальна довжина імені користувача 4 символи"
+                    },
+                    maxLength: {
+                        value: 21,
+                        message: "Максимальна довжина імені користувача 20 символ"
+                    }
+                })} className={style.loginForm__field}/>
+                <div className={style.loginForm__error}>{errors?.username && errors?.username?.message}</div>
+                <span className={style.loginForm__fieldName}>Пароль</span>
+                <input type="password" {...register("password", {
+                    required: "Це поле обов'язкове",
+                    minLength: {
+                        value: 4,
+                        message: "Мінімальна довжина паролю 4 символи"
+                    },
+                    maxLength: {
+                        value: 21,
+                        message: "Максимальна довжина паролю 20 символ"
+                    }
+                })} className={style.loginForm__field}/>
+                <div className={style.loginForm__error}>{errors?.password && errors?.password?.message}</div>
+                <span className={style.loginForm__error}>{props.errorMessage}</span>
+                <button type="submit" className={style.loginForm__submitButton}>Увійти</button>
+            </form>: null
         }
     </div>
 }
