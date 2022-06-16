@@ -67,12 +67,8 @@ const AddDishPopup = ({active, setActive, createNewDish, getAllDishes}) => {
                 </div>
 
                 <div className={style.buttonsWrapper}>
-                    <button type="submit" disabled={!isValid} className={style.buttonsWrapper__createButton}>Створити страву</button>
-                    <button onClick={() => {
-                        reset({},{
-                            keepErrors: false
-                        })
-                    }} className={style.buttonsWrapper__clearButton}>Очистити</button>
+                    <button type="submit" className={style.buttonsWrapper__createButton}>Створити страву</button>
+                    <button onClick={() => {reset()}} className={style.buttonsWrapper__clearButton}>Очистити</button>
                 </div>
             </form>
         </div>
