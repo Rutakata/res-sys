@@ -20,7 +20,8 @@ import {
     getFetchingState,
     getCurrentOrderPrice, getCurrentUser, getSearchedDishes
 } from "../../Redux/menuSelectors";
-
+import {getIsAuth} from "../../Redux/authSelectors";
+import {Navigate} from "react-router";
 
 const MenuContainer = (props) => {
     // useEffect(() => {
@@ -32,6 +33,8 @@ const MenuContainer = (props) => {
         props.getAllDishes()
         // }, [JSON.stringify(props.soups), JSON.stringify(props.drinks)])
     }, [])
+
+    if (!props.isAuth) return <Navigate to="/login" replace={true} />
 
     return <Menu soups={props.soups} drinks={props.drinks} addDishToOrder={props.addDishToOrder}
                  currentOrder={props.currentOrder} createOrder={props.createOrder} isFetching={props.isFetching}
@@ -48,7 +51,8 @@ let mapStateToProps = (state) => ({
     currentOrderPrice: getCurrentOrderPrice(state),
     isFetching: getFetchingState(state),
     username: getCurrentUser(state),
-    searchedDishes: getSearchedDishes(state)
+    searchedDishes: getSearchedDishes(state),
+    isAuth: getIsAuth(state)
 })
 
 export default connect(mapStateToProps, {

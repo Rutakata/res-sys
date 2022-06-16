@@ -7,15 +7,16 @@ const SET_ERROR = "SET_ERROR"
 
 let initialState = {
     username: null,
-    errorMessage: null
+    errorMessage: null,
+    isAuth: false
 }
 
 let authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USERNAME:
-            return {...state, username: action.username}
+            return {...state, username: action.username, isAuth: true}
         case CLEAR_USERNAME:
-            return {...state, username: null}
+            return {...state, username: null, isAuth: false}
         case SET_ERROR:
             return {...state, errorMessage: action.errorMessage}
         default:
@@ -37,8 +38,6 @@ export const setErrorMessage = (errorMessage) => {
 
 export const sendLoginData = (username, password) => async (dispatch) => {
     let response = await AuthApi.logIn(username, password)
-
-    console.log(response)
 
     if (response.data.statusCode === 200) {
         dispatch(setUsername(response.data.userObject.username))
