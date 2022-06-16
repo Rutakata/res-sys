@@ -22,6 +22,8 @@ import {
 } from "../../Redux/menuSelectors";
 import {getIsAuth} from "../../Redux/authSelectors";
 import {Navigate} from "react-router";
+import withAuthRedirect from "../../HOC/withAuthRedirect";
+import {compose} from "redux";
 
 const MenuContainer = (props) => {
     // useEffect(() => {
@@ -34,7 +36,7 @@ const MenuContainer = (props) => {
         // }, [JSON.stringify(props.soups), JSON.stringify(props.drinks)])
     }, [])
 
-    if (!props.isAuth) return <Navigate to="/login" replace={true} />
+    //if (!props.isAuth) return <Navigate to="/login" replace={true} />
 
     return <Menu soups={props.soups} drinks={props.drinks} addDishToOrder={props.addDishToOrder}
                  currentOrder={props.currentOrder} createOrder={props.createOrder} isFetching={props.isFetching}
@@ -55,7 +57,7 @@ let mapStateToProps = (state) => ({
     isAuth: getIsAuth(state)
 })
 
-export default connect(mapStateToProps, {
+export default compose(withAuthRedirect, connect(mapStateToProps, {
     addDishToOrder,
     createOrder,
     clearOrder,
@@ -66,5 +68,5 @@ export default connect(mapStateToProps, {
     createNewDish,
     deleteDish,
     setSearchedDishes
-})(MenuContainer)
+}))(MenuContainer)
 

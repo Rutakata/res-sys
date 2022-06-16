@@ -5,6 +5,8 @@ import {connect} from "react-redux";
 import {getOrdersList, setOrderReady, sendOrderToPayment} from "../../Redux/ordersReducer";
 import {getIsAuth, getUsername} from "../../Redux/authSelectors";
 import {Navigate} from "react-router";
+import withAuthRedirect from "../../HOC/withAuthRedirect";
+import {compose} from "redux";
 
 const OrdersListContainer = (props) => {
     useEffect(() => {
@@ -32,4 +34,4 @@ let mapStateToProps = (state) => ({
     isAuth: getIsAuth(state)
 })
 
-export default connect(mapStateToProps, {getOrdersList, setOrderReady, sendOrderToPayment})(OrdersListContainer)
+export default compose(withAuthRedirect, connect(mapStateToProps, {getOrdersList, setOrderReady, sendOrderToPayment}))(OrdersListContainer)
