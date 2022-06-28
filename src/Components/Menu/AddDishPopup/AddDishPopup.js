@@ -6,7 +6,7 @@ import style from "./AddDishPopup.module.css";
 const AddDishPopup = ({active, setActive, createNewDish, getAllDishes}) => {
     let {
         register,
-        formState: { errors, isValid },
+        formState: { errors },
         handleSubmit,
         reset
     } = useForm({ mode: "onBlur" })
